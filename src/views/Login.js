@@ -15,7 +15,7 @@ function Login() {
     try {
       await signInWithEmailAndPassword(auth, correo, password);
       // El usuario se ha autenticado correctamente
-      navigate('/registro-llamadas'); // Navegar a RegistroLlamadas
+      navigate('/registrollamadas'); // Navegar a RegistroLlamadas
     } catch (error) {
       // Muestra un mensaje de error si la autenticación falla
       setError('Correo electrónico o contraseña incorrecta');

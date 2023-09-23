@@ -1,55 +1,52 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { doc, getDoc } from 'firebase/firestore';
+import db from '../firebase.js';
+import { getAuth } from 'firebase/auth';
 
 function RegistroLlamadas() {
-  const [callerName, setCallerName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [callDescription, setCallDescription] = useState('');
+  const [usuario, setUsuario] = useState(null);
+  const [fecha, setFecha] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Aquí puedes agregar la lógica para enviar los datos a donde necesites
-    console.log('Llamada registrada:', { callerName, phoneNumber, callDescription });
-    // Limpiar campos después de enviar
-    setCallerName('');
-    setPhoneNumber('');
-    setCallDescription('');
+  useEffect(() => {
+    // Configurar la fecha al cargar el componente
+    const fechaActual = new Date().toLocaleDateString();
+    setFecha(fechaActual);
+
+    // Obtén el usuario autenticado
+    const auth = getAuth();
+    const user = auth.currentUser;
+    
+    if (user) {
+      // Aquí asumo que tienes una colección de usuarios y el id del documento
+      // del usuario en Firestore es el mismo que el uid del usuario autenticado.
+      const obtenerUsuario = async () => {
+        const docRef = doc(db, 'usuarios', user.uid);
+        const docSnap = await getDoc(docRef);
+        
+        if (docSnap.exists()) {
+          setUsuario(docSnap.data());
+        } else {
+          console.log('No such document!');
+        }
+      };
+      
+      obtenerUsuario();
+    }
+  }, []);
+  
+  const registrarLlamada = async (tipo) => {
+    // Aquí viene el código para registrar la llamada
+    // igual como en el ejemplo anterior.
   };
+  
+  if (!usuario) return <div>Cargando...</div>;
 
   return (
-    <div>
-      <h1>Registro de Llamadas</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="callerName">Nombre de la persona que llama:</label>
-          <input
-            type="text"
-            id="callerName"
-            value={callerName}
-            onChange={(e) => setCallerName(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="phoneNumber">Número de Teléfono:</label>
-          <input
-            type="tel"
-            id="phoneNumber"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="callDescription">Descripción de la Llamada:</label>
-          <textarea
-            id="callDescription"
-            value={callDescription}
-            onChange={(e) => setCallDescription(e.target.value)}
-            required
-          ></textarea>
-        </div>
-        <button type="submit">Registrar Llamada</button>
-      </form>
+    <div style={{ border: '1px solid black', padding: '10px', margin: '10px', width: '300px' }}>
+      <h2>{usuario.nombre}</h2>
+      <p>{fecha}</p>
+      <button onClick={() => registrarLlamada('No responde llamado')}>No responde llamado</button>
+      <button onClick={() => registrarLlamada('Paciente llama de vuelta')}>Paciente llama de vuelta</button>
     </div>
   );
 }
