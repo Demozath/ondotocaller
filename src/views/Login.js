@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom'; // Importar useNavigate
 
 function Login() {
   const [correo, setCorreo] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-
+  
+  const navigate = useNavigate(); // Obtener la función navigate
   const auth = getAuth(); // Obtiene la instancia de Auth de Firebase
 
   const handleSubmit = async (e) => {
@@ -13,7 +15,7 @@ function Login() {
     try {
       await signInWithEmailAndPassword(auth, correo, password);
       // El usuario se ha autenticado correctamente
-      // Redirige al usuario a la página principal o donde desees
+      navigate('/registro-llamadas'); // Navegar a RegistroLlamadas
     } catch (error) {
       // Muestra un mensaje de error si la autenticación falla
       setError('Correo electrónico o contraseña incorrecta');
