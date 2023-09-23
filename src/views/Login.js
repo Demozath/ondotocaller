@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom'; // Importar useNavigate
 
+
 function Login() {
   const [correo, setCorreo] = useState('');
   const [password, setPassword] = useState('');
@@ -23,7 +24,7 @@ function Login() {
   };
 
   return (
-    <div>
+    <div cassName="login-container">
       <h2>Iniciar Sesión</h2>
       <form onSubmit={handleSubmit}>
         <div>

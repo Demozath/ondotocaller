@@ -1,0 +1,38 @@
+body {
+    font-family: 'Cambria', serif;
+    background-color: #f4f4f4; /* Un color de fondo suave y claro */
+    color: #333; /* Color oscuro para el texto */
+    line-height: 1.6em; /* Espaciado entre líneas */
+}
+
+.container {
+    width: 50%;
+    margin: auto; 
+}
+
+#recuadro {
+    background-color: #ffffff; /* Fondo blanco para el recuadro */
+    padding: 20px;
+    border-radius: 8px; /* Bordes redondeados del recuadro */
+    box-shadow: 0px 0px 10px 0px #ccc; /* Sombra sutil alrededor del recuadro */
+}
+
+button {
+    background-color: #5cb85c; /* Color suave para el botón */
+    color: #ffffff; /* Texto blanco en el botón */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px; /* Bordes redondeados del botón */
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #4cae4c; /* Color un poco más oscuro al pasar el ratón sobre el botón */
+}
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0; /* Puedes cambiar el color de fondo según tus preferencias */
+  }
