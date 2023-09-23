@@ -1,4 +1,5 @@
-import RegistroUsuarios from './views/registro.js'; // Ajusta la ruta según la ubicación real del componente
+import RegistroUsuarios from "./views/Registro.js";
+
 import './App.css';
 
 function App() {
