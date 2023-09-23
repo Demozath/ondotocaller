@@ -3,15 +3,16 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Ca
 import RegistroUsuarios from './views/Registro';
 import Login from './views/Login';
 import Navegacion from './views/Navegacion';
+import RegistroLlamadas from './views/RegistroLlamadas';
 
 function App() {
   return (
     <Router>
       <Navegacion />
-      <Routes> {/* Cambiado Switch por Routes */}
+      <Routes> 
         <Route path="/registro" element={<RegistroUsuarios />} />
         <Route path="/login" element={<Login />} />
-
+        <Route path="/registrollamadas" element={<RegistroLlamadas />} />
       </Routes>
     </Router>
   );
