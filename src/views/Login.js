@@ -35,3 +35,8 @@ function Login() {
         {error && <p>{error}</p>}
         <button type="submit">Iniciar Sesión</button>
       </form>
+    </div>
+  );
+}
+
+export default Login;
